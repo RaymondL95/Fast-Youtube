@@ -15,7 +15,8 @@ class App extends Component{
 		super(props);
 		this.state = {
 		videos:[],
-		selectedVideo: null
+		selectedVideo: null,
+		historyVideos:[]
 		 };
 		this.videoSearch('surfboard');
 	}
@@ -37,7 +38,8 @@ class App extends Component{
 				<VideoList 
 				onVideoSelect={selectedVideo =>this.setState({selectedVideo})}
 				videos={this.state.videos}/>
-				<HistoryBar/>
+				<HistoryBar 
+				selectedVideo={this.state.selectedVideo}/>
 			</div>
 		);
 	}

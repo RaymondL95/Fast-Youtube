@@ -4,8 +4,9 @@
 	font-size: 46px;
 	font-family: "Titillium Web", sans-serif;
 }
-.History{
+.HistoryListClass{
 	font-size: 26px;
+	padding-left: 30%;
 }
 .search-bar{
 	margin: 20px;
