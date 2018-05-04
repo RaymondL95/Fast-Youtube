@@ -1,15 +1,24 @@
 import React from 'react';
 
-const HistoryListItem = (props) => {
-	if(props.selectedVideo){
-		console.log(props.selectedVideo.video);
-	}
+const HistoryListItem = ({historyVideos, onVideoSelect}) => {
+	const imageUrl = historyVideos.snippet.thumbnails.default.url;
 	return (
-		<li>
-			Hey
+		<li onClick={() => onVideoSelect(historyVideos) }	className="list-group-item">
+			<div className="video-list media">
+
+				<div className="media-left">
+					<img className="media-object" src={imageUrl} />
+				</div>
+
+				<div className="media-body">
+					<div className="media-heading">{historyVideos.snippet.title}</div>
+				</div>
+
+			</div>
 		</li>
 		);
 
 };
+
 
 export default HistoryListItem;

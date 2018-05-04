@@ -5,7 +5,7 @@ import YTSearch from 'youtube-api-search';
 import FastYoutube from './components/title';
 import SearchBar from './components/search_bar';
 import VideoList from './components/video_list';
-import HistoryBar from './components/history_list';
+import HistoryList from './components/history_list';
 import VideoDetail from './components/video_detail';
 
 const API_KEY = 'AIzaSyBZv2473iYL4OPbbhjKoEkl9U8ZunknEYg';
@@ -16,7 +16,7 @@ class App extends Component{
 		this.state = {
 		videos:[],
 		selectedVideo: null,
-		historyVideos:[]
+		historyVideos: []
 		 };
 		this.videoSearch('surfboard');
 	}
@@ -24,8 +24,10 @@ class App extends Component{
 		YTSearch({key: API_KEY, term: term}, (videos) =>{
 			this.setState({ 
 				videos:videos,
-				selectedVideo: videos[0]
+				selectedVideo: videos[0],
 			});
+			this.setState({historyVideos:[...this.state.historyVideos, this.state.selectedVideo]})
+			console.log(this.state.historyVideos);
 		});
 	}
 	render(){
@@ -38,8 +40,13 @@ class App extends Component{
 				<VideoList 
 				onVideoSelect={selectedVideo =>this.setState({selectedVideo})}
 				videos={this.state.videos}/>
-				<HistoryBar 
-				selectedVideo={this.state.selectedVideo}/>
+				<span className="HistoryText">History</span>
+				<HistoryList
+					onVideoSelect={
+						selectedVideo =>this.setState({selectedVideo})
+					}
+				historyVideos={this.state.historyVideos}
+				/>
 			</div>
 		);
 	}

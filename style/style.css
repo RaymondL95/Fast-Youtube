@@ -4,6 +4,12 @@
 	font-size: 46px;
 	font-family: "Titillium Web", sans-serif;
 }
+.HistoryText{
+	text-align: center;
+	font-family: "Titillium Web", sans-serif;
+	margin: 0 50%;
+	font-size: 36px;
+}
 .HistoryListClass{
 	font-size: 26px;
 	padding-left: 30%;
