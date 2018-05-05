@@ -26,12 +26,15 @@ class App extends Component{
 				videos:videos,
 				selectedVideo: videos[0],
 			});
-			this.setState({historyVideos:[...this.state.historyVideos, this.state.selectedVideo]})
-			console.log(this.state.historyVideos);
+			this.AddToHistoryList();
 		});
 	}
+
+	AddToHistoryList(){
+		this.setState({historyVideos:[...this.state.historyVideos, this.state.selectedVideo]})
+	}
 	render(){
-		const videoSearch = _.debounce((term) => {this.videoSearch(term)},300);
+		const videoSearch = _.debounce((term) => {this.videoSearch(term)},500);
 		return(
 			<div> 
 				<FastYoutube />
@@ -39,6 +42,7 @@ class App extends Component{
 				<VideoDetail video={this.state.selectedVideo} />
 				<VideoList 
 				onVideoSelect={selectedVideo =>this.setState({selectedVideo})}
+				onHistoryList={historyVideos =>this.setState({historyVideos:[...this.state.historyVideos, this.state.selectedVideo]})}
 				videos={this.state.videos}/>
 				<span className="HistoryText">History</span>
 				<HistoryList
